@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center gy-4">
+        <!-- First Card: Title and Description -->
+        <div class="col-lg-10">
+            <div class="card shadow border-0 bg-gradient bg-dark text-white">
+                <div class="card-body text-center p-5">
+                    <h1 class="display-4 fw-bold mb-4" style="font-family: 'Algerian';">Real-Time Weather Forecasting Website</h1>
+                    <p class="fs-5" style="text-align: justify; line-height: 1.8;">
+                        Discover accurate and reliable weather updates tailored for your needs. Plan better with real-time weather forecasts 
+                        derived from global models, satellites, radars, and local stations. Experience weather insights that empower your decisions 
+                        with confidence and ease.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Card: Image and Buttons -->
+        <div class="col-lg-6">
+            <div class="card shadow border-0 text-center bg-dark text-white">
+                <div class="card-body p-5">
+                    <!-- Admin View Icon -->
+                    <div class="mb-4">
+                        <img src="{% static 'Images/admin.png' %}" alt="Admin View Icon" class="img-fluid rounded-circle border border-3 border-primary shadow" style="width: 150px;">
+                    </div>
+                    <!-- Login and Register Buttons -->
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'SignIn' %}" class="btn btn-primary btn-lg px-5 py-3 fw-semibold shadow-sm transition-transform hover-scale">Login</a>
+                        <a href="{% url 'Register' %}" class="btn btn-outline-light btn-lg px-5 py-3 fw-semibold shadow-sm transition-transform hover-scale">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Custom CSS -->
+<style>
+    body{
+        background-color:rgba(31, 201, 31, 0.3);
+    }
+    .hover-scale {
+        transition: transform 0.3s ease-in-out;
+    }
+    .hover-scale:hover {
+        transform: scale(1.1);
+    }
+    .bg-gradient {
+        background: linear-gradient(135deg, #4b79a1, #283e51);
+    }
+</style>
+{% endblock %}

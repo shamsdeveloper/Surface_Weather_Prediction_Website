@@ -1,0 +1,123 @@
+{% load static %}
+<style>
+    /* Elegant Gradient Footer with Glass Effect */
+    .footer {
+        background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(40, 40, 40, 0.85));
+        backdrop-filter: blur(15px);
+        padding: 80px 0;
+        border-top: 3px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.4);
+        transition: all 0.4s ease-in-out;
+    }
+
+    /* Footer Title Styling */
+    .footer h5 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 26px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: color 0.3s ease-in-out;
+    }
+    .footer h5:hover {
+        color: #ffcc00;
+    }
+
+    /* Footer Links - Enhanced Hover Effects */
+    .footer a {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.2rem;
+        transition: color 0.4s ease-in-out, transform 0.4s ease-in-out;
+        text-decoration: none !important;
+    }
+    .footer a:hover {
+        color: #ffcc00;
+        transform: translateX(8px);
+        text-shadow: 0 0 12px rgba(255, 204, 0, 0.7);
+    }
+
+    /* Social Media Icons - Animated Effects */
+    .social-links a {
+        font-size: 1.8rem;
+        transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out;
+    }
+    .social-links a:hover {
+        transform: scale(1.4);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    }
+
+    /* Contact Info with Smooth Hover Effect */
+    .footer-contact p:hover {
+        transform: translateX(10px);
+        color: #ffcc00 !important;
+    }
+
+    /* Scroll to Top Button */
+    .scroll-top {
+        background: linear-gradient(135deg, rgba(255, 140, 0, 0.9), rgba(255, 200, 0, 0.9));
+        box-shadow: 0 6px 18px rgba(255, 170, 50, 0.6);
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    }
+    .scroll-top:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 25px rgba(255, 200, 0, 1);
+    }
+</style>
+
+<footer id="footer" class="footer text-white position-relative">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-4 col-md-6">
+                <a href="#" class="d-flex align-items-center mb-3">
+                    <span class="fs-3 fw-bold text-light">WeatherWave</span>
+                </a>
+                <p class="small">Providing real-time weather forecasting and wave surface predictions using advanced technology. Stay ahead of changing weather conditions.</p>
+                <div class="social-links d-flex gap-3">
+                    <a href="#" class="text-light"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-light"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'My_Admin_Dashboard' %}">Admin Dashboard</a></li>
+                    <li><a href="{% url 'Country4' %}">Current Weather</a></li>
+                    <li><a href="{% url 'View_all_current' %}">View Forecast</a></li>
+                    <li><a href="{% url 'weather_forecast_view' %}">Future Forecast</a></li>
+                    <li><a href="{% url 'My_Future' %}">View Future Data</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5>Services</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'My_Admin_Dashboard' %}">Admin Dashboard</a></li>
+                    <li><a href="{% url 'Country4' %}">Current Forecast</a></li>
+                    <li><a href="{% url 'View_all_current' %}">Weather Reports</a></li>
+                    <li><a href="{% url 'weather_forecast_view' %}">Predictive Analysis</a></li>
+                    <li><a href="{% url 'My_Future' %}">Wave Data</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-12 footer-contact">
+                <h5>Contact Us</h5>
+                <p class="small mb-1">123 Coastal Drive, Kuala Terengganu, Malaysia</p>
+                <p class="small"><strong>Phone:</strong> +1 5589 55488 55</p>
+                <p class="small"><strong>Email:</strong> <a href="mailto:MR.ILMAN@gmail.com" class="text-light text-decoration-none">MR.ILMAN@gmail.com</a></p>
+            </div>
+        </div>
+
+        <div class="border-top mt-4 pt-3 text-center small">
+            <p class="mb-0">© 2025 WeatherWave. All Rights Reserved.</p>
+            <p>Designed by <a href="https://bootstrapmade.com/" class="text-light text-decoration-none">MR.ILMAN</a></p>
+        </div>
+    </div>
+</footer>
+
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center position-fixed bottom-4 end-4 text-white rounded-circle p-3 shadow-lg">
+    <i class="bi bi-arrow-up-short fs-3"></i>
+</a>

@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-center text-light display-10 bg-success rounded-top rounded-left rounded-bottom" style="height:60px;">
+    Weather Forecasting Services
+  </h1>
+  <p class="text-center text-white lead bg-primary card-img-top rounded-top">
+    Our services provide accurate, real-time, and future weather predictions, helping you plan and make informed decisions with ease.
+  </p>
+  <div class="row mt-5 g-4">
+    <!-- Current Weather Data Card -->
+    <div class="col-lg-6">
+      <div class="card bg-dark text-light shadow h-100 hover-card border-0">
+        <img src="{% static 'Images/for_cuurrent_weather.png' %}" class="card-img-top rounded-top" alt="Current Weather Data">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Current Weather Data</h5>
+          <p class="card-text">
+            Access real-time weather data from global models, satellites, radars, and local weather stations. Stay updated with reliable information for operational planning.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-center">
+          <a href="https://zoom.earth/maps/satellite/" target="_blank" class="btn btn-primary rounded-pill px-4">View on Google Map</a>
+        </div>
+      </div>
+    </div>
+    <!-- Daily Forecast Card -->
+    <div class="col-lg-6">
+      <div class="card bg-dark text-light shadow h-100 hover-card border-0">
+        <img src="{% static 'Images/future_prediction.PNG' %}" class="card-img-top rounded-top" alt="Daily Forecast">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Daily Forecast (16 Days)</h5>
+          <p class="card-text">
+            Plan ahead with precise 16-day weather forecasts for any location worldwide. Perfect for event planning, agriculture, and long-term scheduling.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-center">
+          <a href="https://zoom.earth/maps/satellite/" target="_blank" class="btn btn-primary rounded-pill px-4">View on Google Map</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk Weather Data Card -->
+    <div class="col-lg-6">
+      <div class="card bg-dark text-light shadow h-100 hover-card border-0">
+        <img src="{% static 'Images/bulk_prediction.PNG' %}" class="card-img-top rounded-top" alt="Bulk Weather Data">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Hourly Weather Data Prediction</h5>
+          <p class="card-text">
+            Hourly Weather Data Prediction involves building machine learning models to forecast weather conditions, 
+            such as temperature, humidity, 
+            and precipitation, on an hourly basis using historical weather data.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-center">
+          <a href="https://zoom.earth/maps/satellite/" target="_blank" class="btn btn-primary rounded-pill px-4">View on Google Map</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5-Day / 3-Hour Forecast Card -->
+    <div class="col-lg-6">
+      <div class="card bg-dark text-light shadow h-100 hover-card border-0">
+        <img src="{% static 'Images/other_prediction.PNG' %}" class="card-img-top rounded-top" alt="5-Day / 3-Hour Forecast">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Day Wise Weather Data Prediction</h5>
+          <p class="card-text">
+            Day-wise Weather Data Prediction involves developing a model to forecast daily weather metrics like temperature, humidity, 
+            and precipitation based on historical weather patterns, enabling better planning and decision-making.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-center">
+          <a href="https://zoom.earth/maps/satellite/" target="_blank" class="btn btn-primary rounded-pill px-4">View on Google Map</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Interactive Map Section -->
+<section class="map-section py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="text-primary fw-bold mb-4">Explore Surf Spots Near You</h2>
+    <p class="text-muted mb-4 lead">Discover top surfing destinations and check real-time conditions with our interactive map.</p>
+    <div class="map-container rounded shadow" style="height: 500px; overflow: hidden;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019579258882!2d144.9560543153239!3d-37.81627944202153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf4c5c3e021be6f0!2sSurfer%20Beach!5e0!3m2!1sen!2s!4v1614031229403!5m2!1sen!2s"
+        width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Custom CSS -->
+<style>
+    body{
+        background-color:rgba(31, 201, 31, 0.3);
+    }
+  .hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .map-container iframe {
+    border-radius: 10px;
+  }
+</style>
+
+<!-- Animation Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".hover-card");
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add("animate__animated", "animate__fadeInUp");
+      }, index * 200);
+    });
+  });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+{% endblock %}

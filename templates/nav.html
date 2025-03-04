@@ -1,0 +1,119 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-black-white shadow-sm py-3">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-highlight" href="{% url 'Home' %}" style="font-size: 1.8rem;">REAL TIME WAVE FORECASTING</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link fw-medium position-relative hover-modern" href="{% url 'Home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium position-relative hover-modern" href="{% url 'about_us' %}">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium position-relative hover-modern" href="{% url 'Services' %}">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium position-relative hover-modern" href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium position-relative hover-modern" href="{% url 'Home_Admin' %}">Admin View</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Color palette for Black-White or Green-White Styling */
+/* Switch these colors to create different themes */
+:root {
+    --main-bg: #000; /* Black */
+    --main-text: #fff; /* White */
+    --hover-bg: #00a859; /* Green */
+    --highlight-color: #00a859; /* Green for text highlights */
+}
+
+/* Background and text colors */
+.navbar.bg-black-white {
+    background: var(--main-bg);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Brand text highlight */
+.text-highlight {
+    color: var(--highlight-color);
+    transition: color 0.3s ease;
+}
+
+.text-highlight:hover {
+    color: var(--main-text);
+}
+
+/* Link styles */
+.nav-link {
+    font-size: 1rem;
+    color: var(--main-text) !important;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--hover-bg) !important;
+    transform: translateY(-3px);
+}
+
+/* Underline hover animation */
+.hover-modern::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: var(--hover-bg);
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    border-radius: 2px;
+}
+
+.hover-modern:hover::after {
+    width: 100%;
+}
+
+/* Navbar toggler button */
+.navbar-toggler {
+    border: 1px solid var(--main-text);
+    background: var(--main-bg);
+    color: var(--main-text);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    transform: scale(1.1);
+    background: var(--hover-bg);
+    color: var(--main-bg);
+}
+
+/* Scroll shadow effect */
+.navbar.scrolled {
+    background: var(--main-bg);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+</style>
+
+<script>
+document.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+</script>

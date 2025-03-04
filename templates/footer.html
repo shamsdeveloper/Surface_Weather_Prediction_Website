@@ -1,0 +1,99 @@
+<footer class="bg-dark text-white text-center py-5 footer-animation">
+    <div class="container">
+        <div class="row">
+            <!-- Logo Section -->
+            <div class="col-md-4 mb-4 mb-md-0">
+                <h4 class="font-weight-bold text-uppercase mb-3">Real Surface Weather</h4>
+                <p class="lead">Providing accurate and up-to-date weather forecasts tailored to your needs. Stay informed and prepared!</p>
+                <a href="#" class="btn btn-outline-light btn-sm">Learn More</a>
+            </div>
+            <!-- Links Section -->
+            <div class="col-md-4 mb-4 mb-md-0">
+                <h5 class="font-weight-bold text-uppercase mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'Home' %}" class="text-light hover-text-orange">Home</a></li>
+                    <li><a href="{% url 'Services' %}" class="text-light hover-text-orange">Services</a></li>
+                    <li><a href="{% url 'about_us' %}" class="text-light hover-text-orange">About</a></li>
+                    <li><a href="{% url 'contact' %}" class="text-light hover-text-orange">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Social Media Section -->
+            <div class="col-md-4">
+                <h5 class="font-weight-bold text-uppercase mb-3">Follow Us</h5>
+                <div>
+                    <a href="#" class="text-light hover-text-orange fs-3 mr-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light hover-text-orange fs-3 mr-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-light hover-text-orange fs-3"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright Section -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <p class="mb-0">© 2025 Real Surface Weather. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* Dark background with gradient animation */
+    .footer-animation {
+        background: linear-gradient(135deg, #111, #333);
+        transition: background 0.5s ease-in-out, transform 0.3s ease;
+    }
+
+    .footer-animation:hover {
+        background: linear-gradient(135deg, #333, #111);
+        transform: scale(1.02);
+    }
+
+    /* Hover effect for links */
+    .hover-text-orange:hover {
+        color: #ff8c00 !important;
+        transition: color 0.3s ease, transform 0.3s ease;
+        transform: translateY(-5px);
+    }
+
+    /* Styling headings */
+    .footer-animation h5, .footer-animation h4 {
+        color: #f5f5f5 !important;
+    }
+
+    /* Smooth transition for social media icons */
+    .footer-animation a {
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .footer-animation a:hover {
+        color: #ff8c00;
+        transform: translateY(-3px);
+    }
+
+    /* Button Styling */
+    .footer-animation .btn-outline-light {
+        border-color: #fff;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .footer-animation .btn-outline-light:hover {
+        background-color: #ff8c00;
+        color: #111;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .footer-animation h5 {
+            font-size: 1.125rem;
+        }
+
+        .footer-animation h4 {
+            font-size: 1.25rem;
+        }
+
+        .footer-animation .btn-outline-light {
+            margin-top: 10px;
+        }
+    }
+</style>

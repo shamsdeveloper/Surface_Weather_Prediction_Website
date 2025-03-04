@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Include Bootstrap CSS, Google Fonts, and Font Awesome -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<section id="contact-section" class="py-5" style="font-family: 'Poppins', sans-serif; background: linear-gradient(to right, #2980b9, #6dd5fa); color: #fff;">
+    <div class="container">
+        <div class="row">
+            <!-- Left Side Content -->
+            <div class="col-md-5 mb-2" style="margin-top:30px;">
+                <div class="p-4 shadow-lg rounded-4" style="background-color: rgba(255, 255, 255, 0.1);">
+                    <h2 class="font-weight-bold mb-4" style="color: #fff;">Stay Connected</h2>
+                    <p class="mb-2"><strong>Email:</strong> <a href="https://mail.google.com/mail/u/0/#inbox" style="color: #f0f0f0;">muhammadIman2010@gmail.com</a></p>
+                    <h4 class="font-weight-bold mt-4">Personal Contact</h4>
+                    <p><strong>Phone 1:</strong> <a href="tel:03359853616" style="color: #f0f0f0;">03359853616</a></p>
+                    <p><strong>Phone 2:</strong> <a href="tel:03276078505" style="color: #f0f0f0;">03276078505</a></p>
+                    <h4 class="font-weight-bold mt-4">WhatsApp</h4>
+                    <p><a href="https://wa.me/03359853616" target="_blank" style="color: #f0f0f0;">03359853616</a></p>
+                    <div class="mt-5">
+                        <h4 class="font-weight-bold">Social Links</h4>
+                        <div>
+                            <a href="#" target="_blank" class="btn btn-danger btn-sm mr-2 mb-2"><i class="fab fa-youtube"></i> YouTube</a>
+                            <a href="#" target="_blank" class="btn btn-primary btn-sm mr-2 mb-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                            <a href="#" target="_blank" class="btn btn-dark btn-sm mb-2"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- --------------Right Side Contact Form----------------------------------- -->
+            <div class="col-md-7" style="margin-top:30px;">
+                <div class="card shadow-lg rounded-4 p-5">
+                    <h3 class="text-center font-weight-bold text-primary mb-4">Contact Us</h3>
+                    <form action="/my_contact/" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name" class="font-weight-bold">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="font-weight-bold">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="font-weight-bold">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="font-weight-bold">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- --------------Right Side Contact Form----------------------------------- -->
+        </div>
+    </div>
+</section>
+<!-- Interactive Map Section -->
+<section class="map-section py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="text-primary fw-bold mb-4">Explore Surf Spots Near You</h2>
+      <p class="text-muted mb-4 lead">Discover top surfing destinations and check real-time conditions with our interactive map.</p>
+      <div class="map-container rounded shadow" style="height: 500px; overflow: hidden;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019579258882!2d144.9560543153239!3d-37.81627944202153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf4c5c3e021be6f0!2sSurfer%20Beach!5e0!3m2!1sen!2s!4v1614031229403!5m2!1sen!2s"
+          width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+    </div>
+  </section>
+<!-- Add some modern hover effects and spacing styles -->
+<style>
+    body{
+        background-color:rgba(31, 201, 31, 0.3);
+    }
+    #contact-section {
+        padding-top: 100px;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control:focus {
+        box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.5);
+        border-color: #007bff;
+    }
+
+    .btn {
+        border-radius: 50px;
+    }
+
+    .card {
+        background-color: #fff;
+    }
+</style>
+    <!-- SweetAlert Success Message -->
+    {% if messages %}
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Thank you!',
+            text: '{% for message in messages %}{{ message }}{% endfor %}',
+            confirmButtonText: 'OK'
+        });
+    </script>
+    {% endif %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+{% endblock %}
+    
