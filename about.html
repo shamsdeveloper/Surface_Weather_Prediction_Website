@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style1.css' %}">
+{% block content %}
+<!-- About Us Section -->
+<section class="about-section text-center py-5 bg-primary text-white">
+    <div class="container">
+        <h1 class="display-20 text-dark mb-4">About Us</h1>
+        <p class="lead text-white">Our Weather & Wave Forecasting platform delivers real-time weather and wave data tailored for surfers and ocean enthusiasts. By leveraging cutting-edge forecasting technologies, we provide insights to plan ocean activities effectively.</p>
+        <p class="mb-4 text-white">Our tools analyze weather patterns, wave heights, swell periods, wind speeds, and more, offering a complete overview of ocean conditions for the next 7 days.</p>
+        <hr class="my-4 bg-primary">
+        
+        <!-- Key Features Section -->
+        <h2 class="text-primary mb-4 text-dark">Why Choose Us?</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary"><i class="fas fa-water"></i> Wave Height & Period Forecasts</h5>
+                        <p class="card-text text-muted">Get accurate predictions to plan your surf sessions confidently.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary"><i class="fas fa-cloud-sun"></i> Real-Time Weather Updates</h5>
+                        <p class="card-text text-muted">Stay informed about optimal conditions for your ocean activities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary"><i class="fas fa-wind"></i> Wind Speed & Direction</h5>
+                        <p class="card-text text-muted">Understand how wind affects wave conditions with detailed insights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call-to-Actions -->
+        <div class="mt-4">
+            <a href="#" class="btn btn-danger btn-lg mx-2">Sign Up for Updates</a>
+            <a href="#" class="btn btn-outline-light btn-lg mx-2">Download Our App</a>
+        </div>
+    </div>
+</section>
+<!-- for developer section-->
+<!-- Developer Section -->
+<section class="developer-section text-center py-5" style="background: linear-gradient(to bottom, #1c1c1c, #343a40); color: #f8f9fa;">
+    <div class="container">
+        <!-- Section Title -->
+        <h2 class="display-4 mb-4 text-info animate__animated animate__zoomIn">Meet the Developer</h2>
+
+        <div class="row align-items-center justify-content-center">
+            <!-- Developer Image -->
+            <div class="col-md-4 text-center animate__animated animate__zoomIn">
+                <div class="developer-img-container mb-4">
+                    <img src="{% static 'Images/user.jpg' %}" alt="Developer Image" 
+                        class="img-fluid rounded-circle shadow" 
+                        style="width: 200px; height: 200px; object-fit: cover;">
+                </div>
+            </div>
+
+            <!-- Developer Info -->
+            <div class="col-md-6 animate__animated animate__fadeIn">
+                <h3 class="text-info">MR. ILMAN</h3>
+                <p class="font-italic">Lead Developer & Creator of the Weather & Wave Forecasting Platform</p>
+                <p class="text-muted">Driven by a passion for technology and the ocean, Mr. Ilman created this platform to bring surfers real-time weather and wave forecasting data, enhancing their connection with the sea.</p>
+
+                <!-- Contact Button -->
+                <a href="mailto:ilman@example.com" class="btn btn-outline-info mt-3">Contact Me</a>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="skills-info text-left mt-5 animate__animated animate__fadeIn">
+            <h4 class="text-info text-center mb-3">Skills & Expertise</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-info"></i> Python Programming</li>
+                        <li><i class="fas fa-check-circle text-info"></i> Django Framework</li>
+                        <li><i class="fas fa-check-circle text-info"></i> Database Management (SQL, NoSQL)</li>
+                        <li><i class="fas fa-check-circle text-info"></i> RESTful APIs Development</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-info"></i> Machine Learning & AI (Deep Learning)</li>
+                        <li><i class="fas fa-check-circle text-info"></i> Web Development (HTML, CSS, JS, Bootstrap)</li>
+                        <li><i class="fas fa-check-circle text-info"></i> Cloud Computing & Deployment</li>
+                        <li><i class="fas fa-check-circle text-info"></i> Agile Methodologies & Version Control (Git)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Info Section -->
+        <div class="contact-info mt-5 animate__animated animate__fadeIn">
+            <h4 class="text-info text-center mb-3">Contact Details</h4>
+            <ul class="list-unstyled text-center">
+                <li><i class="fas fa-envelope text-info"></i> Email: <a href="mailto:ilman@example.com" class="text-white">ilman@example.com</a></li>
+                <li><i class="fas fa-phone text-info"></i> Phone: +123 456 7890</li>
+                <li><i class="fas fa-globe text-info"></i> Website: <a href="https://www.ilmanportfolio.com" class="text-white" target="_blank">www.ilmanportfolio.com</a></li>
+                <li><i class="fab fa-github text-info"></i> GitHub: <a href="https://github.com/ilman" class="text-white" target="_blank">github.com/ilman</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Interactive Map Section -->
+<section class="map-section py-5">
+    <div class="container text-center">
+        <h2 class="text-primary mb-4">Explore Surf Spots Near You</h2>
+        <p class="text-muted mb-4">Find the best surfing destinations and check real-time conditions on our interactive map.</p>
+        <div class="map-container" style="height: 500px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019579258882!2d144.9560543153239!3d-37.81627944202153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf4c5c3e021be6f0!2sSurfer%20Beach!5e0!3m2!1sen!2s!4v1614031229403!5m2!1sen!2s" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                style="border:0;" 
+                allowfullscreen="" 
+                aria-hidden="false" 
+                tabindex="0"></iframe>
+        </div>
+    </div>
+</section>
+<!-- Animations using Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<style>
+     body{
+         background-color:rgba(31, 201, 31, 0.3);
+     }
+</style>
+
+{% endblock %}

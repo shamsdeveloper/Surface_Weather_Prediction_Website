@@ -1,0 +1,85 @@
+{% extends 'Dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<!-- Bootstrap JS and CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container mt-5">  
+    
+    
+    <div style="margin-top:90px;">
+         <h2 class="text-center mb-4 text-white" style="color:white:font-weight:bold;">16-Day Weather and Wave Forecast</h2>
+    </div>
+    <!-- Form to input city name -->
+    <form method="POST" action="{% url 'weather_forecast_view' %}" class="mb-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="city_name" style="color:white;font-size:20px;font-weight:bold;">Enter City Name:</label>
+            <input type="text" class="form-control" id="city_name" name="city_name" placeholder="City Name" required style="background-color:rgb(67, 202, 62);color:white;">
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Find Future Weather Prediction</button>
+    </form>
+
+    <!-- Error message -->
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <!-- Display records and graphs -->
+    {% if records %}
+    <div class="row">
+        {% for record in records %}
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{ record.image_url }}" class="img-fluid" alt="Weather Icon for {{ record.day }}">
+                    <h5 class="card-title">Date: {{ record.day }}</h5>
+                    <p class="card-text"><strong>City:</strong> {{ record.city }}</p>
+                    <p class="card-text"><strong>Description:</strong> {{ record.description }}</p>
+                    <p class="card-text"><strong>Weather:</strong> {{ record.weather_main }} - {{ record.weather_description }}</p>
+                    <p class="card-text"><strong>Temperature:</strong> {{ record.temp }}&#8451;</p>
+                    <p class="card-text"><strong>Feels Like:</strong> {{ record.feels_like }}&#8451;</p>
+                    <p class="card-text"><strong>Min Temperature:</strong> {{ record.temp_min }}&#8451;</p>
+                    <p class="card-text"><strong>Max Temperature:</strong> {{ record.temp_max }}&#8451;</p>
+                    <p class="card-text"><strong>Pressure:</strong> {{ record.pressure }} hPa</p>
+                    <p class="card-text"><strong>Humidity:</strong> {{ record.humidity }}%</p>
+                    <p class="card-text"><strong>Wind Speed:</strong> {{ record.wind_speed }} m/s</p>
+                    <p class="card-text"><strong>Wind Direction:</strong> {{ record.wind_deg }}&#176;</p>
+                    <p class="card-text"><strong>Rain (Last 1 Hour):</strong> {{ record.rain_1h }} mm</p>
+                    <p class="card-text"><strong>Cloudiness:</strong> {{ record.cloudiness }}%</p>
+                    <p class="card-text"><strong>Sunrise:</strong> {{ record.sunrise }}</p>
+                    <p class="card-text"><strong>Sunset:</strong> {{ record.sunset }}</p>
+                    <p class="card-text"><strong>Timezone:</strong> {{ record.timezone }}</p>
+                    <p class="card-text"><strong>Country:</strong> {{ record.country }}</p>
+                    <p class="card-text"><strong>Wave Period:</strong> {{ record.wave_period }} s</p>
+                    <p class="card-text"><strong>Wavelength:</strong> {{ record.wavelength }} m</p>
+                    <p class="card-text"><strong>Wave Depth:</strong> {{ record.wave_depth }} m</p>
+                </div>
+                <div class="card-footer" style="width:100%;">
+                    <img src="{% static record.day %}_daily_graph.png" class="img-fluid mt-2" alt="Daily Graph for {{ record.day }}" style="width:100%;">
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Combined 16-days graph -->
+    <div class="card mt-12">
+        <div class="card-header">
+            <h4 class="card-title">16-Day Combined Graph</h4>
+        </div>
+        <div class="card-body" style="width:100%;">
+            <img src="{% static '16_days_combined_graph.png' %}" class="img-fluid" alt="16-Day Combined Graph" style="width:100%;">
+        </div>
+    </div>
+    {% endif %}
+</div>
+<style>
+    body {
+        background: linear-gradient(to right, rgb(15, 17, 14), rgb(50, 50, 51), rgb(51, 50, 49)); /* Red, Green, Blue gradient */
+    }
+</style>
+{% endblock %}

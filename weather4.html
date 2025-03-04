@@ -1,0 +1,157 @@
+{% extends 'Dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<div 
+    style="
+    margin-top:90px;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    min-height: 100vh;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mx-auto mt-4">
+                <div class="weather-card bg-light p-4 rounded shadow" style="width: 100%; height: auto; 
+                    background: linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3));">
+                    <h2 class="temp">{{ temp }}&#176; C</h2>
+                    <h2 class="city">{{ city }}</h2>
+                    <div class="icon mt-3 mb-3">
+                        <img src="http://openweathermap.org/img/w/{{ icon }}.png" width="120px">
+                    </div>
+                    <div class="condition">
+                        <p>{{ description }}</p>
+                        <p>{{ day }}</p>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h3 class="mb-3">Detailed Weather Information</h3>
+                    <div class="weather-details" style="
+                        background-image: url('{% if exception_occurred %}https://images.pexels.com/photos/3008509/pexels-photo-3008509.jpeg?auto=compress&cs=tinysrgb&w=1600{% else %}{{ image_url }}{% endif %}'),
+                        linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+                        background-size: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        padding: 20px; 
+                        border-radius: 10px;
+                        color: white;
+                        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+                    ">
+                        <p><strong>Coordinates:</strong> Lat: {{ coord_lat }}, Lon: {{ coord_lon }}</p>
+                        <p><strong>Weather Main:</strong> {{ weather_main }}</p>
+                        <p><strong>Feels Like:</strong> {{ feels_like }}&#176; C</p>
+                        <p><strong>Temp Min/Max:</strong> {{ temp_min }}&#176; C / {{ temp_max }}&#176; C</p>
+                        <p><strong>Pressure:</strong> {{ pressure }} hPa</p>
+                        <p><strong>Humidity:</strong> {{ humidity }}%</p>
+                        <p><strong>Wind Speed:</strong> {{ wind_speed }} m/s</p>
+                        <p><strong>Wind Direction:</strong> {{ wind_deg }}&#176;</p>
+                        <p><strong>Rain (last hour):</strong> {{ rain_1h }} mm</p>
+                        <p><strong>Cloudiness:</strong> {{ cloudiness }}%</p>
+                        <p><strong>Sunrise:</strong> {{ sunrise }}</p>
+                        <p><strong>Sunset:</strong> {{ sunset }}</p>
+                        <p><strong>Timezone:</strong> UTC{{ timezone }}</p>
+                        <p><strong>Country:</strong> {{ country }}</p>
+                    </div>
+                </div>
+
+                <div class="wave-properties bg-light p-4 rounded shadow mt-4" style="width: 100%; height: auto;">
+                    <h3 class="mb-3">Wave Properties</h3>
+                    <p><strong>Wave Period:</strong> {{ wave_period }} s</p>
+                    <p><strong>Wavelength:</strong> {{ wavelength }} m</p>
+                    <p><strong>Wave Depth:</strong> {{ wave_depth }} m</p>
+                </div>
+
+                <div class="chart-container bg-transparent p-4 rounded shadow mt-4" style="width: 100%; height: 600px;">
+                    <h3 class="mb-3 text-center" style="background-color: green; color: white; height: 50px; text-align: center;">
+                        Wave Characteristics
+                    </h3>
+                    <canvas id="waveChart" style="background-color: black; border: 2px solid white;"></canvas>
+                </div>
+
+                
+                <div class="previous-card bg-dark text-white p-4 rounded shadow mt-4" style="width: 100%; height: auto;
+                    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));">
+                    <h3 class="mb-3">Previous Card</h3>
+                    <p>Here you can add content related to previous information with a black and white theme.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if exception_occurred %}
+    <script>
+        window.onload = function() {
+            alert("City information is not available to Weather API");
+        }
+    </script>
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    new Chart(document.getElementById('waveChart'), {
+        type: 'line', // Use line chart
+        data: {
+            labels: ['Wind Speed', 'Wave Period', 'Wavelength', 'Wave Depth', 'Temperature'], // Labels for each property
+            datasets: [{
+                label: 'Wave Properties', // Dataset label
+                data: [{{ wind_speed }}, {{ wave_period }}, {{ wavelength }}, {{ wave_depth }}, {{ temp }}], // Data points
+                backgroundColor: 'rgba(0, 123, 255, 0.2)', // Background color of the line
+                borderColor: 'rgba(0, 123, 255, 1)', // Line color
+                borderWidth: 3, // Line width
+                pointBackgroundColor: 'rgba(0, 123, 255, 1)', // Point color
+                pointBorderColor: 'rgba(0, 123, 255, 1)', // Point border color
+                pointRadius: 5, // Point size
+                tension: 0.4 // Curve smoothness
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true, // Display legend
+                    labels: {
+                        color: 'white' // Legend text color
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'white' // X-axis label color
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white' // Y-axis label color
+                    },
+                    beginAtZero: true // Start Y-axis at zero
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+    .chart-container {
+        position: relative;
+        width: 90%; /* Increased width of the chart */
+        height: 600px; /* Increased height for better visibility */
+        overflow: visible;
+        margin: 0 auto; /* Center the chart on the page */
+    }
+
+    .chart-container canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+{% endblock %}

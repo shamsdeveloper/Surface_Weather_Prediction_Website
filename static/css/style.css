@@ -1,0 +1,57 @@
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hero-image img {
+    animation: fadeIn 2s ease-in-out;
+    width: 100%; /* Ensures the image is responsive */
+    max-width:80%; /* Adjust this value to fit your design */
+    height:500px; /* Maintains aspect ratio */
+    display: block; /* Removes any unwanted space below the image */
+    margin: 0 auto; /* Centers the image horizontally */
+}
+
+.container {
+    animation: slideIn 1.5s ease-out;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fadeIn {
+    animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar {
+    background-color: #009688;
+}
+
+.page-footer {
+    background-color: #00796B;
+}
+
+.container {
+    margin-top: 40px;
+    text-align: center;
+}

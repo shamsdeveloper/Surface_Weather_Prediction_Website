@@ -1,0 +1,189 @@
+{% extends 'Dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Bootstrap JS and CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container mt-6" style="margin-top:100px;">
+    <h1 class="text-center" style="background-color:green;color:white; margin-left:220px;width:650px;border-radius:20px;height:60px;">City Weather and Wave Analysis</h1>
+    <form method="POST" action="{% url 'Country4' %}">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="city" class="col-sm-2 col-form-label" style="background-color:black;color:white;">Enter City Name:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="city" name="city" placeholder="Enter city">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-dark" style="width:290px;">Find Current Weather Condition</button>
+            </div>
+        </div>
+    </form>
+
+    {% if not exception_occurred %}
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h3 class="mb-0">Weather Details for {{ city }}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Date:</strong> {{ day }}</p>
+                        <p><strong>Temperature:</strong> {{ temp }} &deg;C</p>
+                        <p><strong>Weather:</strong> {{ description }}</p>
+                        <p><strong>Humidity:</strong> {{ humidity }}%</p>
+                        <p><strong>Pressure:</strong> {{ pressure }} hPa</p>
+                        <p><strong>Wind Speed:</strong> {{ wind_speed }} m/s</p>
+                        <p><strong>Cloudiness:</strong> {{ cloudiness }}%</p>
+                        <p><strong>Sunrise:</strong> {{ sunrise }}</p>
+                        <p><strong>Sunset:</strong> {{ sunset }}</p>
+                        <p><strong>Country:</strong> {{ country }}</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="https://openweathermap.org/img/w/{{ icon }}.png" alt="Weather Icon" class="img-fluid">
+                        {% if image_url %}
+                            <img src="{{ image_url }}" alt="City Landscape" class="img-fluid mt-3">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">Wave and Weather Analysis</h3>
+            </div>
+            <div class="card-body" style="background-color:black;color:white;">
+                <p><strong>Wave Period:</strong> {{ wave_period }} s</p>
+                <p><strong>Wavelength:</strong> {{ wavelength }} m</p>
+                <p><strong>Wave Depth:</strong> {{ wave_depth }} m</p>
+                <div id="plot-container" style="background-color:rgba(23,0,0,0.9);color:white;">{{ plot_html|safe }}</div>
+            </div>
+        </div>
+            
+            <div style="background-color:blue;color:white;margin:auto;width:800px;height:60px;border-radius:20px;">
+                <h1 style="text-align:center;">Add All of City Weather Condition Records</h1>
+            </div>
+            <div style="background-color:blue;color:white;border:5px solid white;border-radius:4px;">
+                <form id="weatherForm" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="city" style="color:white;">City</label>
+                        <input type="text" class="form-control" id="city" name="city" style="background-color:black;color:white;" value="{{ city }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="weather_condition" style="color:white;">Weather Condition</label>
+                        <input type="text" class="form-control" id="weather_condition" name="weather_condition" style="background-color:black;color:white;" value="{{ description }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="temperature" style="color:white;">Temperature</label>
+                        <input type="text" class="form-control" id="temperature" name="temperature" style="background-color:black;color:white;" value="{{ temp }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="humidity" style="color:white;">Humidity</label>
+                        <input type="text" class="form-control" id="humidity" name="humidity" style="background-color:black;color:white;" value="{{ humidity }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="pressure" style="color:white;">Pressure</label>
+                        <input type="text" class="form-control" id="pressure" name="pressure" style="background-color:black;color:white;" value="{{ pressure }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="wind_speed" style="color:white;">Wind Speed</label>
+                        <input type="text" class="form-control" id="wind_speed" name="wind_speed" style="background-color:black;color:white;" value="{{ wind_speed }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="cloudiness" style="color:white;">Cloudiness</label>
+                        <input type="text" class="form-control" id="cloudiness" name="cloudiness" style="background-color:black;color:white;" value="{{ cloudiness }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="sunrise" style="color:white;">Sunrise</label>
+                        <input type="text" class="form-control" id="sunrise" name="sunrise" style="background-color:black;color:white;" value="{{ sunrise }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="sunset" style="color:white;">Sunset</label>
+                        <input type="text" class="form-control" id="sunset" name="sunset" style="background-color:black;color:white;" value="{{ sunset }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="country" style="color:white;">Country</label>
+                        <input type="text" class="form-control" id="country" name="country" style="background-color:black;color:white;" value="{{ country }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="wave_period" style="color:white;">Wave Period</label>
+                        <input type="text" class="form-control" id="wave_period" name="wave_period" style="background-color:black;color:white;" value="{{ wave_period }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="wavelength" style="color:white;">Wavelength</label>
+                        <input type="text" class="form-control" id="wavelength" name="wavelength" style="background-color:black;color:white;" value="{{ wavelength }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="wave_depth" style="color:white;">Wave Depth</label>
+                        <input type="text" class="form-control" id="wave_depth" name="wave_depth" style="background-color:black;color:white;" value="{{ wave_depth }}">
+                    </div>
+                    <button type="button" class="btn btn-danger mt-4" data-toggle="modal" data-target="#addRecordModal" id="addRecordButton">Add Records</button>
+                </form>
+            </div>
+    {% endif %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('addRecordButton').addEventListener('click', function () {
+        const form = document.getElementById('weatherForm');
+        const formData = new FormData(form);
+
+        // Validate all fields
+        let emptyFields = [];
+        for (const [key, value] of formData.entries()) {
+            if (!value.trim()) {
+                emptyFields.push(key);
+            }
+        }
+
+        if (emptyFields.length > 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                text: 'Please fill all the fields.',
+            });
+            return;
+        }
+
+        // Send data to the server using AJAX
+        fetch('/save_weather_condition/', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: data.message,
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.message,
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An unexpected error occurred.',
+                });
+            });
+    });
+</script>
+
+<style>
+    body {
+        background: linear-gradient(to right, rgb(255, 0, 0), rgb(0, 255, 0), rgb(0, 0, 255)); /* Red, Green, Blue gradient */
+    }
+</style>
+
+{% endblock %}

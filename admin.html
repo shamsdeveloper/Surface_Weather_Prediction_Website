@@ -1,0 +1,261 @@
+{% extends 'Dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Updated Bootstrap Material Design for a modern, clean UI -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+<!-- Material Design Stylesheets -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-material-design@5.1.0/dist/css/bootstrap-material-design.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<!-- Page Heading with gradient background -->
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #2980B9, #8E44AD); width:100%; min-height: 100vh; color: white;">
+  <div class="text-center mb-5">
+    <h1 class="display-3 fw-bold">Weather & Wave Prediction</h1>
+    <p class="lead">Stay updated with the latest weather forecasts and wave predictions.</p>
+  </div>
+
+  <!-- Dashboard Cards Section -->
+  <div class="row justify-content-center g-4">
+    <!-- Current Weather Card -->
+    <div class="col-md-5">
+      <div class="card text-white border-0 shadow-lg" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);">
+        <div class="card-body text-center">
+          <i class="bi bi-cloud-sun-fill" style="font-size: 3rem;"></i>
+          <h5 class="card-title">Current Weather Locations</h5>
+          <p class="display-4" id="temperature">{{ total_current_weather_count }}</p>
+          <p>Explore real-time weather forecasts</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Future Weather Card -->
+    <div class="col-md-5">
+      <div class="card text-white border-0 shadow-lg" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);">
+        <div class="card-body text-center">
+          <i class="bi bi-cloud-rain-fill" style="font-size: 3rem;"></i>
+          <h5 class="card-title">Future Weather Locations</h5>
+          <p class="display-4" id="humidity">{{ total_future_weather_count }}</p>
+          <p>Forecasting upcoming weather patterns</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Welcome Message Card -->
+  <div class="container mt-5">
+    <div class="card shadow-lg rounded-3" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);">
+      <div class="card-header text-white bg-dark d-flex align-items-center justify-content-between">
+        <h5 class="mb-0">Welcome to the Weather & Wave Forecasting Hub</h5>
+        <i class="bi bi-emoji-sunglasses" style="font-size: 2rem;"></i>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Access accurate weather forecasts and wave height predictions across various Malaysian cities. Plan your outdoor activities and adventures with ease.
+        </p>
+        <a href="#" class="btn btn-primary mt-3">Explore Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- City Weather Cards Section -->
+  <div class="container py-5">
+    <h2 class="text-center text-white mb-4">Explore Weather in Popular Cities</h2>
+    <div class="row g-4">
+      <!-- Pahang City -->
+      <div class="col-md-4">
+        <div class="card shadow-lg" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);">
+          <img src="{% static 'Images/country1.jpeg' %}" class="card-img-top" alt="Cherating Beach">
+          <div class="card-body text-center text-white">
+            <h5 class="card-title">Cherating Beach, Pahang</h5>
+            <p class="card-text">Discover the serene atmosphere and beautiful weather in Pahang's Cherating Beach.</p>
+            <a href="{% url 'Country1' %}" class="btn btn-warning">Check Pahang Weather</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Johor City -->
+      <div class="col-md-4">
+        <div class="card shadow-lg" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);">
+          <img src="{% static 'Images/country2.jpeg' %}" class="card-img-top" alt="Tanjung Balau Beach">
+          <div class="card-body text-center text-white">
+            <h5 class="card-title">Tanjung Balau, Johor</h5>
+            <p class="card-text">Enjoy the fresh sea breeze and mild weather in Johor's Tanjung Balau Beach.</p>
+            <a href="{% url 'Country2' %}" class="btn btn-warning">Check Johor Weather</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terengganu City -->
+      <div class="col-md-4">
+        <div class="card shadow-lg" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);">
+          <img src="{% static 'Images/country3.jpeg' %}" class="card-img-top" alt="Juara Beach">
+          <div class="card-body text-center text-white">
+            <h5 class="card-title">Juara Beach, Terengganu</h5>
+            <p class="card-text">Experience the warm tropical climate and beautiful views in Terengganu's Juara Beach.</p>
+            <a href="{% url 'Country3' %}" class="btn btn-warning">Check Terengganu Weather</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Balau  City -->
+      <div class="col-md-4">
+        <div class="card shadow-lg" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);">
+          <img src="{% static 'Images/country4.jpeg' %}" class="card-img-top" alt="Juara Beach">
+          <div class="card-body text-center text-white">
+            <h5 class="card-title">Weather Condition of Balau City</h5>
+            <p class="card-text">Experience the warm tropical climate and beautiful views in Balau Juara Balau.</p>
+            <a href="{% url 'Country5' %}" class="btn btn-warning">Check Balau Weather</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beach  City -->
+      <div class="col-md-4">
+        <div class="card shadow-lg" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);">
+          <img src="{% static 'Images/country5.jpeg' %}" class="card-img-top" alt="Juara Beach">
+          <div class="card-body text-center text-white">
+            <h5 class="card-title">Weather Condition of Beach City</h5>
+            <p class="card-text">Enjoy the beauty of Beach beaches with warm and sunny weather for a tropical escape.</p>
+            <a href="{% url 'Country6' %}" class="btn btn-warning">Check Beach Weather</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pulau  City -->
+      <div class="col-md-4">
+        <div class="card shadow-lg" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);">
+          <img src="{% static 'Images/country6.jpeg' %}" class="card-img-top" alt="Juara Beach">
+          <div class="card-body text-center text-white">
+            <h5 class="card-title">Weather Condition of Pulau City</h5>
+            <p class="card-text">Enjoy the beauty of Pulau beaches with warm and sunny weather for a tropical escape.</p>
+            <a href="{% url 'Country7' %}" class="btn btn-warning">Check Pulau Weather</a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+
+  <!-- Weather & Wave Insights Section -->
+  <div class="container py-5">
+    <h2 class="text-center text-white mb-4">Weather and Wave Prediction Insights</h2>
+    <div class="row">
+      <!-- Temperature & Humidity Graph -->
+      <div class="col-md-6">
+        <div class="card shadow-lg" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);">
+          <div class="card-body">
+            <h5 class="card-title text-center">Temperature & Humidity Over Time</h5>
+            <canvas id="weatherGraph"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave Height Graph -->
+      <div class="col-md-6">
+        <div class="card shadow-lg" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);">
+          <div class="card-body">
+            <h5 class="card-title text-center">Wave Height Predictions</h5>
+            <canvas id="waveGraph"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Custom Styling for Transparency -->
+<style>
+  body {
+    background: linear-gradient(
+      45deg, 
+      rgba(204, 32, 32, 0.6), 
+      rgba(137, 218, 31, 0.6), 
+      rgba(230, 204, 10, 0.6), 
+      rgba(238, 59, 160, 0.6), 
+      rgba(68, 18, 126, 0.6), 
+      rgba(156, 194, 18, 0.6), 
+      rgba(212, 59, 59, 0.6), 
+      rgba(211, 211, 35, 0.6)
+    );
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .card {
+    border-radius: 10px;
+  }
+
+  .card-header, .card-body {
+    padding: 20px;
+  }
+
+  .container-fluid, .container {
+    padding: 20px;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  AOS.init({
+    easing: 'ease-in-out-sine',
+    duration: 800,
+  });
+
+  // Initialize the chart for weather conditions
+  var weatherChart = new Chart(document.getElementById('weatherGraph'), {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      datasets: [{
+        label: 'Temperature (°C)',
+        data: [24, 26, 28, 30, 32],
+        borderColor: '#FF5733',
+        borderWidth: 2,
+        fill: false,
+      }, {
+        label: 'Humidity (%)',
+        data: [60, 55, 50, 48, 45],
+        borderColor: '#4DB8FF',
+        borderWidth: 2,
+        fill: false,
+      }]
+    }
+  });
+
+  // Initialize the chart for wave heights
+  var waveChart = new Chart(document.getElementById('waveGraph'), {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      datasets: [{
+        label: 'Wave Height (m)',
+        data: [1.2, 1.5, 1.8, 2.1, 2.5],
+        borderColor: '#FF9F33',
+        borderWidth: 2,
+        fill: false,
+      }]
+    }
+  });
+</script>
+
+{% endblock %}
